@@ -32,7 +32,7 @@ function getSurveyDetails() {
     console.log(response);
     response.then(function (result) {
         console.log(result) // survey response details
-        // info on questions, answer options, survey types, etc are embedded in an array in the 'Pages' response field
+        // info on questions, answer options, survey types, etc are embedded in an array in the 'Pages' result field
     })
         .catch(error => console.log(error));
 }
@@ -45,18 +45,24 @@ function getSurveyResponse() {
         headers: { 'Authorization': authToken }
     })
         .then(res => res.json());
-    console.log(response);
+    console.log("response details:", response);
     response.then(function (result) {
-        console.log(result) // survey response details
-        // questions and answer details, text, etc. are embedded in an array in the 'Pages' response field
+        let questions = result.data[0].pages[0].questions;
+        console.log("result:", questions[0].answers) // survey response details
+        // questions and answer details, text, etc. are embedded in an array in the 'Pages' result field
         // for questions with button selections pages[0].questions[0].answers[0].choice_id
         // for questions requiring text response: pages[0].questions[0].answers[0].text
+        for (let i = 0; i < questions.length; i++) {
+            let question = questions[i];
+            let answer = question.answers[0];
+            console.log("answer:", answer);
+        }
     })
         .catch(error => console.log(error));
 }
 
-getSurveyId();
-getSurveyDetails();
+// getSurveyId();
+// getSurveyDetails();
 getSurveyResponse();
 
     // potentially useful code

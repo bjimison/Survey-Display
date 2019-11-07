@@ -1,5 +1,6 @@
-// const myImage = document.querySelector('.my-image');
+// window.addEventListener('load', getSurveyResponse, false);
 
+// const display = document.getElementById('survey');
 const fetch = require("node-fetch");
 const authToken = "bearer 7zF8BOnG4G7RzWhxfQxo2YjP7B-O0myhv7uUtPX8DL9gNqXvZvY.YfjdXqHQODdWf11OQQl6WPmRbeerKXG6Jwh0SMpOUsuVFMliRcw2GeifUQAwfGCdOu.Qp1F9-QFC";
 const getSurveyIdURL = 'https://api.surveymonkey.com/v3/surveys'
@@ -50,25 +51,24 @@ function getSurveyResponse() {
         let questions = result.data[0].pages[0].questions;
         console.log("result:", questions[0].answers) // survey response details
         // questions and answer details, text, etc. are embedded in an array in the 'Pages' result field
-        // for questions with button selections pages[0].questions[0].answers[0].choice_id
-        // for questions requiring text response: pages[0].questions[0].answers[0].text
         for (let i = 0; i < questions.length; i++) {
+            // let span = document.createElement("span");
+            // span.setAttribute("class", "new");
             let question = questions[i];
             let answer = question.answers[0];
+            // span.innerHTML = "Answer:" + answer;
             console.log("answer:", answer);
+            // display.appendChild(span);
         }
     })
         .catch(error => console.log(error));
 }
 
+// *** Use this endpoint to find the questions based on their ID's found in the results object above ***
+// /survey/{id}/pages/{id}/questions/{id}
+
 // getSurveyId();
 // getSurveyDetails();
 getSurveyResponse();
-
-    // potentially useful code
-    // .then(res => {
-    //     const objectURL = URL.createObjectURL(res);
-    //     myImage.src = objectURL;
-    // });
 
 

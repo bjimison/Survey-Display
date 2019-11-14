@@ -1,2 +1,2 @@
 # Survey-Display
-The purpose of this application is to call the SurveyMonkey API in order to obtain and display the results of a survey in one's own web application.
+The purpose of this application is to call the SurveyMonkey API in order to obtain and display the results of a survey in one's own web application. This script found in index.js uses hard-coded URLs due to time constraints. If the end goal was to write production level code, I would re-write the script to be scalable by using string interpolation to form the URL's allowing various survey Id's to be used seemlessly.
